@@ -1,5 +1,5 @@
 
-Architecture Specification - 화면 구성 및 기능에 따라 어떻게 파일을 나눌 지 미리 정함.
+Architecture and design Specification - 화면 구성 및 기능에 따라 어떻게 파일을 나눌 지 미리 정함.
 
 1. 화면 구성
 
