@@ -5,7 +5,7 @@
 #include <Screen_Mode1.h>
 #include <Screen_Mode2.h>
 #include <Screen_Mode3.h>
-#include <Screen_Mode4.h>
+
 
 using namespace std;
 
@@ -22,15 +22,6 @@ enum {
 int SCREEN_MODE = Screen_Main;
 
 
-void Screen_Main();
-void Screen_Mode1();
-void Screen_Mode2();
-void Screen_Mode3();
-void Screen_Mode4();
-
-
-
-
 int main()
 {
 	while (SCREEN_MODE != Screen_Mode5)
@@ -38,23 +29,28 @@ int main()
 		switch (SCREEN_MODE)
 		{
 			case Screen_Main:
-				Screen_Main();
+				MainScreen_UI();
+				Sleep(1000);
 				break;
 
 			case Screen_Mode1:
-				Screen_Mode1();
+				Screen_Mode1_UI();
+				Sleep(1000);
 				break;
 
 			case Screen_Mode2:
-				Screen_Mode2();
+				Screen_Mode2_UI();
+				Sleep(1000);
 				break;
 
 			case Screen_Mode3:
-				Screen_Mode3();
+				Screen_Mode3_UI();
+				Sleep(1000);
 				break;
 
 			case Screen_Mode4:
-				Screen_Mode4();
+				//Screen_Mode4_UI();
+				Sleep(1000);
 				break;
 		}
 	}
