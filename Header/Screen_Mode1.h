@@ -3,6 +3,6 @@
 #include <Mode_Index.h>
 
 void Screen_Mode1_UI();
-
+void PrintScreen_Mode1();
 
 #endif
