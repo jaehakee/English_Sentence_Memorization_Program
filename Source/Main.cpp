@@ -37,25 +37,25 @@ int main()
 			case Screen_Mode1:
 				system("cls");
 				Screen_Mode1_UI();
-				Sleep(3000);
+				Sleep(500);
 				break;
 
 			case Screen_Mode2:
 				system("cls");
 				Screen_Mode2_UI();
-				Sleep(3000);
+				Sleep(500);
 				break;
 
 			case Screen_Mode3:
 				system("cls");
 				Screen_Mode3_UI();
-				Sleep(3000);
+				Sleep(500);
 				break;
 
 			case Screen_Mode4:
 				system("cls");
 				//Screen_Mode4_UI();
-				Sleep(3000);
+				Sleep(500);
 				break;
 		}
 	}
