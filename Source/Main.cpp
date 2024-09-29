@@ -1,11 +1,12 @@
 #include <iostream>
+#include <fstream>
 #include <windows.h>
 #include <Mode_Index.h>
 #include <Screen_Main.h>
 #include <Screen_Mode1.h>
 #include <Screen_Mode2.h>
 #include <Screen_Mode3.h>
-
+#include <Main_data.h>
 
 using namespace std;
 
@@ -24,6 +25,13 @@ int SCREEN_MODE = Screen_Main;
 
 int main()
 {
+	/* data load */
+	Load_Eng_data("C://Users//JJH//Desktop//JaeHak//2024//Eng_study//ESMP//Data//Eng_data.dat");
+	Load_Kor_data("C://Users//JJH//Desktop//JaeHak//2024//Eng_study//ESMP//Data//Kor_data.dat");
+	Sleep(5000);
+
+
+	/* screen change */
 	while (SCREEN_MODE != Screen_Mode5)
 	{
 		switch (SCREEN_MODE)
@@ -60,4 +68,24 @@ int main()
 		}
 	}
 	return 0;
+}
+
+
+void Load_Eng_data(const string& filename)
+{
+	cout << "English data 를 불러왔습니다.." << endl;
+	ifstream file(filename);
+	string line;
+	getline(file, line);
+	cout << "영어 첫 문장은 : " << line << endl;
+	
+}
+
+void Load_Kor_data(const string& filename)
+{
+	cout << "Korean data 를 불러왔습니다..." << endl;
+	ifstream file(filename);
+	string line;
+	getline(file, line);
+	cout << "한글 첫 문장은 : " << line << endl;
 }
