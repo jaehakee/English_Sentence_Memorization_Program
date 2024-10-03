@@ -74,19 +74,19 @@ int main()
 
 			case Screen_Mode1:
 				system("cls");
-				Screen_Mode1_UI();
+				Screen_Mode1_UI(Eng_data, Kor_data);
 				Sleep(500);
 				break;
 
 			case Screen_Mode2:
 				system("cls");
-				Screen_Mode2_UI();
+				Screen_Mode2_UI(Eng_data, Kor_data);
 				Sleep(500);
 				break;
 
 			case Screen_Mode3:
 				system("cls");
-				Screen_Mode3_UI();
+				Screen_Mode3_UI(Eng_data, Kor_data);
 				Sleep(500);
 				break;
 

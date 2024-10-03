@@ -9,7 +9,7 @@ using namespace std;
 string answer_mode3;
 string question_mode3 = "random";
 
-void Screen_Mode3_UI()
+void Screen_Mode3_UI(vector<string> data1, vector<string> data2)
 {
 	while (true)
 	{

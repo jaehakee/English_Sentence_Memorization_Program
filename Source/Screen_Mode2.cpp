@@ -9,7 +9,7 @@ using namespace std;
 string answer_mode2;
 string question_mode2 = "¶æ";
 
-void Screen_Mode2_UI()
+void Screen_Mode2_UI(vector<string> data1, vector<string> data2)
 {
 	while (true)
 	{
