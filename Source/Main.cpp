@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <windows.h>
 #include <Mode_Index.h>
@@ -7,6 +7,8 @@
 #include <Screen_Mode2.h>
 #include <Screen_Mode3.h>
 #include <Main_data.h>
+#include <locale>
+#include <codecvt>
 
 using namespace std;
 
@@ -21,19 +23,47 @@ enum {
 
 
 int SCREEN_MODE = Screen_Main;
-
+int Eng_data_size = 0;
+int Kor_data_size = 0;
+int data_size_check = 0;
+vector<string> Eng_data;
+vector<string> Kor_data;
 
 int main()
 {
 	/* data load */
+	cout << "\n";
+	cout << "**************************************" << endl;
+	cout << "       데이터를 불러옵니다....." << endl;
+	cout << "**************************************" << endl;
+	Sleep(500);
 	Load_Eng_data("C://Users//JJH//Desktop//JaeHak//2024//Eng_study//ESMP//Data//Eng_data.dat");
+	Sleep(500);
 	Load_Kor_data("C://Users//JJH//Desktop//JaeHak//2024//Eng_study//ESMP//Data//Kor_data.dat");
-	Sleep(5000);
+	Sleep(1000);
 
+	Eng_data_size = Eng_data.size();
+	Kor_data_size = Kor_data.size();
+
+	if (Eng_data_size == Kor_data_size)
+	{
+		data_size_check = 1;
+	}
 
 	/* screen change */
 	while (SCREEN_MODE != Screen_Mode5)
 	{
+		if (!data_size_check)
+		{
+			cout << "\n";
+			cout << "데이터 수가 일치하지 않습니다. 데이터 파일을 확인해 주세요.. \n";
+			cout << "Eng 데이터 수 : " << Eng_data_size << endl;
+			cout << "Kor 데이터 수 : " << Kor_data_size << endl;
+			cout << "\n";
+			cout << "3초 뒤 프로그램을 종료합니다...\n";
+			Sleep(3000);
+			break;
+		}
 		switch (SCREEN_MODE)
 		{
 			case Screen_Main:
@@ -73,19 +103,23 @@ int main()
 
 void Load_Eng_data(const string& filename)
 {
-	cout << "English data �� �ҷ��Խ��ϴ�.." << endl;
+	cout << "English data 를 불러왔습니다.." << endl;
 	ifstream file(filename);
 	string line;
-	getline(file, line);
-	cout << "���� ù ������ : " << line << endl;
-	
+	while (getline(file, line))
+	{
+		Eng_data.push_back(line);
+	}
 }
+
 
 void Load_Kor_data(const string& filename)
 {
-	cout << "Korean data �� �ҷ��Խ��ϴ�..." << endl;
+	cout << "Korean data 를 불러왔습니다..." << endl;
 	ifstream file(filename);
 	string line;
-	getline(file, line);
-	cout << "�ѱ� ù ������ : " << line << endl;
+	while (getline(file, line))
+	{
+		Kor_data.push_back(line);
+	}
 }
