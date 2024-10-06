@@ -1,28 +1,66 @@
 #include <iostream>
 #include <Screen_Mode3.h>
 #include <Mode_Index.h>
+#include <Main_data.h>
 #include <Windows.h>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
 string answer_mode3;
-string question_mode3 = "random";
+string question_mode3;
+string reply_mode3;
+int data_index3;
+int mode_decision;
 
 void Screen_Mode3_UI(vector<string> data1, vector<string> data2)
 {
+	int dec;
+	srand(static_cast<unsigned int> (time(0)));
+
 	while (true)
 	{
+		dec = rand() % 2;
+
+		if (dec == 1)
+		{
+			mode_decision = ENG_MODE; // 문제가 영어임. 영어보고 뜻 맞히기.
+		}
+		else
+		{
+			mode_decision = KOR_MODE; // 문제가 한글임. 뜻보고 영어 맞히기.
+		}
+
+
+		data_index3 = rand() % data_num;
+
+		if (mode_decision == ENG_MODE)
+		{
+			question_mode3 = data1[data_index3];
+			answer_mode3 = data2[data_index3];
+		}
+		else
+		{
+			question_mode3 = data2[data_index3];
+			answer_mode3 = data1[data_index3];
+		}
+
 		PrintScreen_Mode3();
-		getline(cin, answer_mode3);
-		if (answer_mode3 == question_mode3)
+		getline(cin, reply_mode3);
+
+		reply_mode3.erase(0, reply_mode3.find_first_not_of(" \n\r\t"));
+		reply_mode3.erase(reply_mode3.find_last_not_of(" \n\r\t") + 1);
+
+		if (reply_mode3 == answer_mode3)
 		{
 			cout << "\n";
 			cout << "★ 정답입니다! 다음문제로 넘어갑니다. ★" << endl;
 			Sleep(800);
 			system("cls");
 		}
-		else if (answer_mode3[0] == '1' && answer_mode3.length() == 1)
+		else if (reply_mode3[0] == '1' && reply_mode3.length() == 1)
 		{
 			cout << "\n";
 			cout << "메인 화면으로 돌아갑니다....\n";
@@ -30,7 +68,7 @@ void Screen_Mode3_UI(vector<string> data1, vector<string> data2)
 			Sleep(300);
 			break;
 		}
-		else if (answer_mode3[0] == '9' && answer_mode3.length() == 1)
+		else if (reply_mode3[0] == '9' && reply_mode3.length() == 1)
 		{
 			cout << "\n";
 			cout << "프로그램을 종료합니다....\n";
@@ -44,15 +82,15 @@ void Screen_Mode3_UI(vector<string> data1, vector<string> data2)
 			cout << "!! 오답입니다. 다시 입력해 주세요 !! " << endl;
 			cout << "\n";
 			cout << "답 : ";
-			getline(cin, answer_mode3);
-			if (answer_mode3 == question_mode3)
+			getline(cin, reply_mode3);
+			if (reply_mode3 == answer_mode3)
 			{
 				cout << "\n";
 				cout << "★ 정답입니다! 다음문제로 넘어갑니다. ★" << endl;
 				Sleep(800);
 				system("cls");
 			}
-			else if (answer_mode3[0] == '1' && answer_mode3.length() == 1)
+			else if (reply_mode3[0] == '1' && reply_mode3.length() == 1)
 			{
 				cout << "\n";
 				cout << "메인 화면으로 돌아갑니다....\n";
@@ -60,7 +98,7 @@ void Screen_Mode3_UI(vector<string> data1, vector<string> data2)
 				Sleep(300);
 				break;
 			}
-			else if (answer_mode3[0] == '9' && answer_mode3.length() == 1)
+			else if (reply_mode3[0] == '9' && reply_mode3.length() == 1)
 			{
 				cout << "\n";
 				cout << "프로그램을 종료합니다....\n";
@@ -71,9 +109,9 @@ void Screen_Mode3_UI(vector<string> data1, vector<string> data2)
 			else
 			{
 				cout << "\n";
-				cout << "!! 오답입니다. 다음문제로 넘어갑니다. !! " << endl;
+				cout << "!! 오답입니다. 정답은 ... \n" << answer_mode3 << "\n" << "2초 후 다음문제로 넘어갑니다. !!" << endl;
 				cout << "\n";
-				Sleep(800);
+				Sleep(2300);
 				system("cls");
 			}
 		}

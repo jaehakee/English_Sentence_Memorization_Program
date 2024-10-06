@@ -28,6 +28,8 @@ int Kor_data_size = 0;
 int data_size_check = 0;
 vector<string> Eng_data;
 vector<string> Kor_data;
+int data_num = 0;
+
 
 int main()
 {
@@ -64,6 +66,9 @@ int main()
 			Sleep(3000);
 			break;
 		}
+
+		data_num = Eng_data_size; // 데이터 수 저장
+
 		switch (SCREEN_MODE)
 		{
 			case Screen_Main:

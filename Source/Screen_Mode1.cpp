@@ -1,28 +1,43 @@
 #include <iostream>
 #include <Screen_Mode1.h>
 #include <Mode_Index.h>
+#include <Main_data.h>
 #include <Windows.h>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
 string answer_mode1;
-string question_mode1 = "test";
+string question_mode1;
+string reply_mode1;
+int data_index1;
 
 void Screen_Mode1_UI(vector<string> data1, vector<string> data2)
 {
+	srand(static_cast<unsigned int> (time(0)));
+
 	while (true)
 	{
+		data_index1 = rand() % data_num;
+		question_mode1 = data1[data_index1];
+		answer_mode1 = data2[data_index1];
+
 		PrintScreen_Mode1();
-		getline(cin, answer_mode1);
-		if (answer_mode1 == question_mode1)
+		getline(cin, reply_mode1);
+
+		reply_mode1.erase(0, reply_mode1.find_first_not_of(" \n\r\t"));
+		reply_mode1.erase(reply_mode1.find_last_not_of(" \n\r\t") + 1);
+		
+		if (reply_mode1 == answer_mode1)
 		{
 			cout << "\n";
 			cout << "★ 정답입니다! 다음문제로 넘어갑니다. ★" << endl;
 			Sleep(800);
 			system("cls");
 		}
-		else if (answer_mode1[0] == '1' && answer_mode1.length() == 1)
+		else if (reply_mode1[0] == '1' && reply_mode1.length() == 1)
 		{
 			cout << "\n";
 			cout << "메인 화면으로 돌아갑니다....\n";
@@ -30,7 +45,7 @@ void Screen_Mode1_UI(vector<string> data1, vector<string> data2)
 			Sleep(300);
 			break;
 		}
-		else if (answer_mode1[0] == '9' && answer_mode1.length() == 1)
+		else if (reply_mode1[0] == '9' && reply_mode1.length() == 1)
 		{
 			cout << "\n";
 			cout << "프로그램을 종료합니다....\n";
@@ -44,15 +59,15 @@ void Screen_Mode1_UI(vector<string> data1, vector<string> data2)
 			cout << "!! 오답입니다. 다시 입력해 주세요 !! " << endl;
 			cout << "\n"; 
 			cout << "답 : ";
-			getline(cin, answer_mode1);
-			if (answer_mode1 == question_mode1)
+			getline(cin, reply_mode1);
+			if (reply_mode1 == answer_mode1)
 			{
 				cout << "\n";
 				cout << "★ 정답입니다! 다음문제로 넘어갑니다. ★" << endl;
 				Sleep(800);
 				system("cls");
 			}
-			else if (answer_mode1[0] == '1' && answer_mode1.length() == 1)
+			else if (reply_mode1[0] == '1' && reply_mode1.length() == 1)
 			{
 				cout << "\n";
 				cout << "메인 화면으로 돌아갑니다....\n";
@@ -60,7 +75,7 @@ void Screen_Mode1_UI(vector<string> data1, vector<string> data2)
 				Sleep(300);
 				break;
 			}
-			else if (answer_mode1[0] == '9' && answer_mode1.length() == 1)
+			else if (reply_mode1[0] == '9' && reply_mode1.length() == 1)
 			{
 				cout << "\n";
 				cout << "프로그램을 종료합니다....\n";
@@ -71,9 +86,9 @@ void Screen_Mode1_UI(vector<string> data1, vector<string> data2)
 			else
 			{
 				cout << "\n";
-				cout << "!! 오답입니다. 다음문제로 넘어갑니다. !! " << endl;
+				cout << "!! 오답입니다. 정답은 ... \n" << answer_mode1 << "\n" << "2초 후 다음문제로 넘어갑니다. !!" << endl;
 				cout << "\n";
-				Sleep(800);
+				Sleep(2300);
 				system("cls");
 			}
 		}
