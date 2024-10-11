@@ -9,6 +9,8 @@
 #include <Main_data.h>
 #include <locale>
 #include <codecvt>
+#include <algorithm>
+#include <string>
 
 using namespace std;
 
