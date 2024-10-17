@@ -130,3 +130,11 @@ void Load_Kor_data(const string& filename)
 		Kor_data.push_back(line);
 	}
 }
+
+void chkDataClear(int* arr)
+{
+	for (int i = 0; i < data_num; i++)
+	{
+		arr[i] = 0;
+	}
+}

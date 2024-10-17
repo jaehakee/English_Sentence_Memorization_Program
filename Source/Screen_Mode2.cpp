@@ -16,13 +16,48 @@ int data_index2;
 
 void Screen_Mode2_UI(vector<string> data1, vector<string> data2)
 {
+	int randcnt = 0;
+	int* chkdata = new int[data_num];
+
+	chkDataClear(chkdata);
+
 	srand(static_cast<unsigned int> (time(0)));
 
 	while (true)
 	{
 		data_index2 = rand() % data_num;
-		question_mode2 = data2[data_index2];
-		answer_mode2 = data1[data_index2];
+
+		if (chkdata[data_index2] == 1) // 별도 array(chkdata)에 풀었던 문제인지 체크해서 풀었던 것은 자동으로 패스하게 함.
+		{
+			if (randcnt == data_num)
+			{
+				chkDataClear(chkdata);
+				randcnt = 0;
+				data_index2 = rand() % data_num;
+				question_mode2 = data1[data_index2];
+				answer_mode2 = data2[data_index2];
+				chkdata[data_index2] = 1;
+				randcnt++;
+			}
+			else
+			{
+				while (chkdata[data_index2] == 1)
+				{
+					data_index2 = rand() % data_num;
+				}
+				question_mode2 = data1[data_index2];
+				answer_mode2 = data2[data_index2];
+				chkdata[data_index2] = 1;
+				randcnt++;
+			}
+		}
+		else
+		{
+			question_mode2 = data1[data_index2];
+			answer_mode2 = data2[data_index2];
+			chkdata[data_index2] = 1;	// 풀었던 애는 1로 바꿔놓음.
+			randcnt++;
+		}
 
 		PrintScreen_Mode2();
 		getline(cin, reply_mode2);
