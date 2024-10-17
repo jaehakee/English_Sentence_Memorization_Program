@@ -9,6 +9,8 @@
 #include <Main_data.h>
 #include <locale>
 #include <codecvt>
+#include <algorithm>
+#include <string>
 
 using namespace std;
 
@@ -126,5 +128,13 @@ void Load_Kor_data(const string& filename)
 	while (getline(file, line))
 	{
 		Kor_data.push_back(line);
+	}
+}
+
+void chkDataClear(int* arr)
+{
+	for (int i = 0; i < data_num; i++)
+	{
+		arr[i] = 0;
 	}
 }

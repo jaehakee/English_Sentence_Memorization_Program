@@ -11,6 +11,7 @@ using namespace std;
 
 void Load_Eng_data(const string &filename);
 void Load_Kor_data(const string& filename);
+void chkDataClear(int* arr);
 
 extern int data_num;
 #endif // !MAIN_DATA
