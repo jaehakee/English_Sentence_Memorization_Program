@@ -87,7 +87,7 @@ int main()
 
 			case Screen_Mode2:
 				system("cls");
-				Screen_Mode2_UI(Eng_data, Kor_data);
+				Screen_Mode2_UI(Kor_data, Eng_data);
 				Sleep(500);
 				break;
 
